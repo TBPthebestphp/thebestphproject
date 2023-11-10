@@ -1,15 +1,16 @@
 * {
-    margin: 0px;
-    padding: 0px;
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Onest', sans-serif;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    font-family: 'Pixelify Sans', sans-serif;
 }
 
 html {
     scroll-behavior: smooth;
-}
-
-body {
-    background-color: rgb(25, 65, 65);
 }
 
 .contenedor {
@@ -31,7 +32,6 @@ body {
 }
 
 .contenedor form label {
-    background-color: rgb(25, 65, 65);
     width: 100%;
     padding: 15px;
     margin: 10px 0px;
@@ -40,7 +40,6 @@ body {
 .contenedor form input[type=text] ,
 .contenedor form input[type=password],
 .contenedor form input[type=number] {
-    background-color: rgb(235, 170, 92);
     width: 100%;
     padding: 10px;
     border: none;
@@ -49,14 +48,12 @@ body {
 }
 
 .mensaje {
-    background-color: rgb(42, 138, 63);
     width: 100%;
     padding: 10px;
     text-align: center;
 }
 
 .home {
-    background-color: rgb(25, 65, 65);
     width: 100%;
     padding: 10px;
     text-align: center;
@@ -73,19 +70,16 @@ body {
 }
 
 .tabla {
-    background-color: rgb(25, 65, 65);
     width: 100%;
     padding: 10px;
 }
 
 .tabla tr {
     padding: 10px;
-    background-color: rgb(235, 170, 92);
 }
 
 .tabla tr th,.tabla tr td {
     padding: 5px;
-    background-color: rgb(42, 138, 63);
     text-align: center;
 }
 
@@ -96,7 +90,6 @@ body {
     border-radius: 5px;
     width: 150px;
     height: 55px;
-    background-color: rgb(25, 65, 65);
     border: 1px solid rgb(42, 138, 63);
     transition: 1.5s;
     display: flex;
@@ -126,7 +119,6 @@ form label div a:hover {
 
 .header {
     width: 95%;
-    background-color: rgb(42, 138, 63);
     color: #000;
     display: flex;
     padding: 10px;
@@ -145,7 +137,6 @@ form label div a:hover {
 }
 
 textarea {
-    background-color: rgb(235, 170, 92);
     min-width: 100%;
     max-width: 100%;
     min-height: 250px;
@@ -155,7 +146,6 @@ textarea {
 }
 
 .footer {
-    background-color: rgb(235, 170, 92);
     width: 100%;
     padding: 25px;
     display: flex;

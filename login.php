@@ -1,11 +1,15 @@
 <?php session_start();
 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 if (
-    isset ($_SESSION['nickname']) &&
-    isset ($_SESSION['userhash']) &&
-    isset ($_SESSION['name']) &&
-    isset ($_SESSION['nacimiento']) &&
-    isset ($_SESSION['edad'])
+    isset ($_SESSION['nombre']) &&
+    isset ($_SESSION['edad']) &&
+    isset ($_SESSION['fecha_nacimiento']) &&
+    isset ($_SESSION['nick_name']) &&
+    isset ($_SESSION['hash'])
 ) {
     header ('Location: http://thebestphproject.local/home.php?from=tophprojects');
 } else {
@@ -15,20 +19,30 @@ if (
     require_once "./TBP-css/tbp-css.php";
 
     echo tbpcontenedor (
-        tbpform(
-            "./TBP-procesamiento/login.php",
+        "<h2>Inicia Sesion</h2>".tbpform(
+            "TBP-procesamiento/login.php",
             "POST",
-            "Usuario",
+            "Nick name",
             "Iniciar Sesion",
             "
             <label>
-
+        
                 <input type='password' 
                 placeholder='password'
                 name='text2' 
                 id='text2'
                 required >
                 
+            </label>
+        
+            <label>
+        
+                <input type='text' 
+                placeholder='hash'
+                name='hash' 
+                id='hash'
+                required >
+            
             </label>
             "
         ),

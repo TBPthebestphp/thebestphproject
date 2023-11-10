@@ -1,11 +1,11 @@
 <?php session_start();
 
 if (
-    isset ($_SESSION['nickname']) &&
-    isset ($_SESSION['userhash']) &&
-    isset ($_SESSION['name']) &&
-    isset ($_SESSION['nacimiento']) &&
-    isset ($_SESSION['edad'])
+    isset ($_SESSION['nombre']) &&
+    isset ($_SESSION['edad']) &&
+    isset ($_SESSION['fecha_nacimiento']) &&
+    isset ($_SESSION['nick_name']) &&
+    isset ($_SESSION['hash'])
 ) {
 
     require_once "./TBP-html/tbp-html.php";
@@ -15,10 +15,10 @@ if (
     require_once "./TBP-mysql/tbp-conn.php";
 
     $conn = conectar (
-        $servername,
-        $username,
-        $password,
-        $dbname
+        'localhost',
+        'ramiro',
+        'tbpplab',
+        'tbpplab'
     );
 
     if (isset($_GET['block'])) {
@@ -33,15 +33,16 @@ if (
         "<header class='header'><h1>H I : ".$_SESSION['nickname']."</h1>
         <a href='#top' class='button'>UP</a>
         <h2>hash : ".$_SESSION['userhash']."</h2></header>".
-        tbpform(
-            "./TBP-procesamiento/createregistro.php",
+        "<h2>Almacena informacion en la base de datos !</h2>".tbpform(
+            "#",
             "POST",
             "title",
             "guardar",
             "<label>      
                 <textarea
                     name='text2'
-                    id=''text2'
+                    id='text2'
+                    placeholder='information here'
                     required
                 ></textarea>
             </label>"

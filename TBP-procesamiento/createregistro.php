@@ -1,11 +1,11 @@
 <?php  session_start();
 
 if (
-    isset ($_SESSION['nickname']) &&
-    isset ($_SESSION['userhash']) &&
-    isset ($_SESSION['name']) &&
-    isset ($_SESSION['nacimiento']) &&
-    isset ($_SESSION['edad'])
+    isset ($_SESSION['nombre']) &&
+    isset ($_SESSION['edad']) &&
+    isset ($_SESSION['fecha_nacimiento']) &&
+    isset ($_SESSION['nick_name']) &&
+    isset ($_SESSION['hash'])
 ) {
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {

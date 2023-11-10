@@ -7,8 +7,12 @@ function tbpcontenedor ($contenido,$title,$css,$menu) {
         <!DOCTYPE html>
         <html lang="en">
         <head>
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Onest:wght@200&family=Pixelify+Sans&display=swap" rel="stylesheet">
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link rel="icon" type="image/x-icon" href="TBP-html/imgs/favicon/favicon.ico">
             <title>'.$title.'</title>
             '.$css.'
         </head>
@@ -124,7 +128,7 @@ function tbptabla ($conn,$hash,$block) {
 function tbpftr () {
 
     return "<footer class='footer'>
-        <a href='http://adminer.local'>Adminer</a>
+        <a href='http://adminer.local/adminer.php'>Adminer</a>
         <a href='./home.php?block=true'>Eliminar un Registro</a>
         <a href='./?block=false'>Bloquear delete</a>
     </footer>";

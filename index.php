@@ -1,11 +1,11 @@
 <?php session_start();
 
 if (
-    isset ($_SESSION['nickname']) &&
-    isset ($_SESSION['userhash']) &&
-    isset ($_SESSION['name']) &&
-    isset ($_SESSION['nacimiento']) &&
-    isset ($_SESSION['edad'])
+    isset ($_SESSION['nombre']) &&
+    isset ($_SESSION['edad']) &&
+    isset ($_SESSION['fecha_nacimiento']) &&
+    isset ($_SESSION['nick_name']) &&
+    isset ($_SESSION['hash'])
 ) {
     header ('Location: http://thebestphproject.local/home.php?from=tophprojects');
 } else {
@@ -27,7 +27,7 @@ if (
             margin: 10px 0px;
         '>
         
-            <img src='./TBP-html/imgs/landingimg.jpg' alt='img' width=100% height=100%>
+            <img src='./TBP-html/imgs/logo/logo.jpg' alt='img' width=100% height=100%>
 
         </div>
         
