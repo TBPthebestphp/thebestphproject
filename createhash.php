@@ -43,8 +43,8 @@ if (
 
                 <input type='text' 
                 placeholder='Crea un Nick-Name'
-                name='chars' 
-                id='chars'
+                name='nickname' 
+                id='nickname'
                 required >
             
             </label>

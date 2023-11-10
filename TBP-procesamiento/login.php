@@ -19,7 +19,7 @@ if (
             isset($_POST['text2']) 
         ) {
             
-            require_once "../TBP-mysql/data.php";
+           
             require_once "../TBP-mysql/tbp-conn.php";
 
             $conn = conectar (
@@ -29,7 +29,7 @@ if (
                 'tbpplab'
             );
             
-            if(existe ($_POST['text1']."|".$_POST['text2'],$conn)) {
+            if(existe ($_POST['text1'],$_POST['text2'],$_POST['hash'],$conn)) {
                 
                 if (setear($_POST['text1'],hash("md5",$_POST['text2']),$conn)) {
                     header ('Location: http://thebestphproject.local/login.php?from=tophprojects');

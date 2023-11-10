@@ -23,7 +23,7 @@ if (
         ) {
     
             
-            require_once "../TBP-mysql/data.php";
+            
             require_once "../TBP-mysql/tbp-conn.php";
             
             $conn = conectar (
@@ -35,7 +35,7 @@ if (
 
             
 
-            if (existe_person ($_POST['text1'],$_POST['text2'],$_POST['fecha'],$_POST['chars'],$conn)) {
+            if (existe_person ($_POST['text1'],$_POST['text2'],$_POST['fecha'],$_POST['nickname'],$conn)) {
                 
                 echo "No se puede registrar. este usuario ya existe.<br>
                 <a href='http://thebestphproject.local/createhash.php?from=tophprojects'>try again</a>";
@@ -44,7 +44,7 @@ if (
                 
                 echo registrar_hash ($conn,
                     $_POST['text1'],(int)$_POST['text2'],
-                    $_POST['fecha'],$_POST['chars']
+                    $_POST['fecha'],$_POST['nickname']
                 );
             }
     

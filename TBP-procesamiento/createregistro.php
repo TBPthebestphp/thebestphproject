@@ -16,7 +16,6 @@ if (
             isset($_POST['text2']) 
         ) {
     
-            require_once "../TBP-mysql/data.php";
             require_once "../TBP-mysql/tbp-conn.php";
             
             $conn = conectar (
@@ -25,10 +24,8 @@ if (
                 'tbpplab',
                 'tbpplab'
             );
-
-            $registro = $_POST['text1']." | ".$_POST['text2'];
                 
-            echo registrar_data ($conn,$registro,$_SESSION['userhash']);
+            echo registrar_data ($conn,$_POST['text1'],$_POST['text2'],$_SESSION['hash']);
                 
     
         }

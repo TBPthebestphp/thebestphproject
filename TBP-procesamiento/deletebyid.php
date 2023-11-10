@@ -8,7 +8,6 @@ if (
     isset ($_SESSION['hash'])
 ) {
 
-    require_once "../TBP-mysql/data.php";
     require_once "../TBP-mysql/tbp-conn.php";
 
     if (isset($_GET['id'])) {

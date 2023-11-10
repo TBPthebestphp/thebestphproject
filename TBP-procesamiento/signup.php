@@ -22,7 +22,6 @@ if (
 
             
     
-            require_once "../TBP-mysql/data.php";
             require_once "../TBP-mysql/tbp-conn.php";
             $conn = conectar (
                 'localhost',
@@ -31,7 +30,7 @@ if (
                 'tbpplab'
             );
             
-            if(existe ($_POST['text1']."|".hash("md5",$_POST['text2']),$conn)) {
+            if(existe ($_POST['text1'],$_POST['text2'],$conn)) {
                 echo "No se puede registrar. este usuario ya existe.
                 <br><a href='http://thebestphproject.local/signup.php?from=tophprojects'>back</a>";
             } else {

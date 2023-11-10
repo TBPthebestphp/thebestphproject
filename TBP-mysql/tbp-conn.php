@@ -36,28 +36,17 @@ function eliminar ($id,$conn) {
     $conn->close();
 }
 
-function existe ($data,$conn) {
+function existe ($nickname,$hash,$conn) {
 
-    $sql = "SELECT user,password FROM users";
+    $sql = "SELECT nick_name,hash FROM person";
     $result = $conn->query($sql);
-
-    
-
-    if (!empty($data)) {
-        $text2 = explode("|",$data)[0];
-        $text3 = explode("|",$data)[1];
-        
-    }
 
     if ($result->num_rows > 0) {
         
         
         while($row = $result->fetch_assoc()) {
-            
-            $text0= $row["user"];
-            
-            $text1 = $row["password"];
-            if ($text2 == $text0 && hash("md5",$text3) == $text1) {
+
+            if ($nickname == $row["nick_name"] && $hash == $row["hash"]) {
                 return true;
             }
         }
@@ -77,17 +66,17 @@ function existe_person ($name,$edad,$nacimiento,$nickname,$conn) {
 
    
 
-    $sql = "SELECT name,edad,nacimiento,nickname FROM person";
+    $sql = "SELECT nombre,edad,fecha_nacimiento,nick_name FROM person";
     $result = $conn->query($sql);
     
     if ($result->num_rows > 0) {
         
         while($row = $result->fetch_assoc()) {
             if (
-                $name == $row['name'] &&
+                $name == $row['nombre'] &&
                 $edad == $row['edad'] &&
-                $nacimiento == $row['nacimiento'] &&
-                $nickname == $row['nickname']
+                $nacimiento == $row['fecha_nacimiento'] &&
+                $nickname == $row['nick_name']
             ) {
                 return true;
             }
@@ -103,9 +92,7 @@ function existe_person ($name,$edad,$nacimiento,$nickname,$conn) {
 
 }
 
-function registrar_hash ($conn,
-    $name,int $age,$date,$nickname
-) {
+function registrar_hash ($conn,$name,int $age,$date,$nickname) {
 
     
     
@@ -115,7 +102,7 @@ function registrar_hash ($conn,
 
     try {
     
-        $sql = "INSERT INTO person (name,edad,nacimiento,nickname,hash) 
+        $sql = "INSERT INTO person (nombre,edad,fecha_nacimiento,nick_name,hash) 
         VALUES ('$name',$age,'$date','$nickname','$hash')";
         
         if ($conn->query($sql) === TRUE) {
@@ -167,11 +154,9 @@ function verificarhash ($hash,$conn) {
     $conn->close();
 }
 
-function registrar_usuario ($conn,
-    $user,$password,$hash
-) {
+function registrar_usuario ($conn,$user,$password,$hash) {
     
-    $sql = "INSERT INTO users (user,password,hash) VALUES ('$user','$password','$hash')";
+    $sql = "INSERT INTO users (person_nick_name,person_hash,password) VALUES ('$user','$hash','$password')";
 
     try{
 
@@ -191,7 +176,7 @@ function registrar_usuario ($conn,
 }
 
 function gethash ($user,$password,$conn) {
-    $sql = "SELECT hash FROM users WHERE user='$user' and password='$password'";
+    $sql = "SELECT hash FROM users WHERE person_nick_name='$user' and password='$password'";
     $result = $conn->query($sql);
     
     if ($result->num_rows > 0) {
@@ -209,18 +194,18 @@ function setear ($user,$password,$conn) {
 
     $hash = gethash($user,$password,$conn);
 
-    $sql = "SELECT name,edad,nacimiento,nickname,hash FROM person WHERE hash='$hash'";
+    $sql = "SELECT name,edad,fecha_nacimiento,nick_name,hash FROM person WHERE hash='$hash'";
     
     $result = $conn->query($sql);
     
     if ($result->num_rows > 0) {
         
         while($row = $result->fetch_assoc()) {
-            $_SESSION['nickname'] = $row['nickname'];
-            $_SESSION['userhash'] = $row['hash'];
-            $_SESSION['name'] = $row['name'];
-            $_SESSION['nacimiento'] = $row['nacimiento'];
+            $_SESSION['nombre'] = $row['nombre'];
             $_SESSION['edad'] = $row['edad'];
+            $_SESSION['fecha_nacimiento'] = $row['fecha_nacimiento'];
+            $_SESSION['nick_name'] = $row['nick_name'];
+            $_SESSION['hash'] = $row['hash'];
         }
 
         return true;
@@ -232,17 +217,11 @@ function setear ($user,$password,$conn) {
     $conn->close();
 }
 
-function registrar_data ($conn,$registro,$hash) {
+function registrar_data ($conn,$title,$info,$hash) {
 
-    $registro = explode("|",$registro);
+    $info = htmlspecialchars($info);
 
-    $registro[0] = "<b>".$registro[0]."</b>";
-
-    $registro = implode("|",$registro);
-
-    $registro = htmlspecialchars($registro);
-
-    $sql = "INSERT INTO registro (registro,hash) VALUES ('$registro','$hash')";
+    $sql = "INSERT INTO registro (title,informacion,nickname_hash) VALUES ('$title','$info','$hash')";
 
     if ($conn->query($sql) === TRUE) {
         return "successfully <br>
