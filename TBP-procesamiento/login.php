@@ -1,5 +1,9 @@
 <?php session_start();
 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 if (
     isset ($_SESSION['nombre']) &&
     isset ($_SESSION['edad']) &&
@@ -29,7 +33,7 @@ if (
                 'tbpplab'
             );
             
-            if(existe ($_POST['text1'],$_POST['text2'],$_POST['hash'],$conn)) {
+            if(existe ($_POST['text1'],$_POST['hash'],$conn)) {
                 
                 if (setear($_POST['text1'],hash("md5",$_POST['text2']),$conn)) {
                     header ('Location: http://thebestphproject.local/login.php?from=tophprojects');

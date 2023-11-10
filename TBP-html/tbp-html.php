@@ -36,29 +36,33 @@ function tbpcontenedor ($contenido,$title,$css,$menu) {
 
 function tbptabla ($conn,$hash,$block) {
 
-    $sql = "SELECT id,registro,fecha_de_registro FROM registro WHERE hash='$hash'";
+    $sql = "SELECT id,title,informacion,fecha_registro FROM registro WHERE nickname_hash='$hash'";
     $result = $conn->query($sql);
     $registros = '';
 
     if ($result->num_rows > 0) {
         
         while($row = $result->fetch_assoc()) {
-            if(!empty($row['registro'])){
+
+            if(!empty($row['informacion'])){
                 if($block) {
 
                     $registros .= "<tr><td>
                     <a href='http://thebestphproject.local/TBP-procesamiento/deletebyid.php?id=".
                     $row['id']."'>
-                    <img src='./TBP-html/imgs/delete_database.webp' alt='delete' width=50%
+                    <img src='TBP-html/imgs/delete.webp' alt='delete' width=50%
                     title='click para eliminar el registro'>
-                    </a></td><td>".$row['registro']."
-                    </td><td>".$row['fecha_de_registro'].
+                    </a></td>
+                    <td>".$row['title']."</td>
+                    <td>".$row['informacion']."
+                    </td><td>".$row['fecha_registro'].
                     "</td></tr>";
 
                 } else {
 
-                    $registros .= "<tr><td>".$row['registro']."
-                    </td><td>".$row['fecha_de_registro'].
+                    $registros .= "<tr><td>".$row['title']."</td>
+                    <td>".$row['informacion']."
+                    </td><td>".$row['fecha_registro'].
                     "</td></tr>";
 
                 }
@@ -72,7 +76,8 @@ function tbptabla ($conn,$hash,$block) {
             <table class='tabla'>
                 <tr>
                     <th>delete</th>
-                    <th>registro</th>
+                    <th>titulo</th>
+                    <th>informacion</th>
                     <th>fecha</th>
                 </tr>
                 $registros
@@ -84,7 +89,8 @@ function tbptabla ($conn,$hash,$block) {
             return "
             <table class='tabla'>
                 <tr>
-                    <th>registro</th>
+                    <th>titulo</th>
+                    <th>informacion</th>
                     <th>fecha</th>
                 </tr>
                 $registros
@@ -101,7 +107,8 @@ function tbptabla ($conn,$hash,$block) {
             <table class='tabla'>
                 <tr>
                     <th>delete</th>
-                    <th>registro</th>
+                    <th>titulo</th>
+                    <th>informacion</th>
                     <th>fecha</th>
                 </tr>
             </table>
@@ -112,7 +119,8 @@ function tbptabla ($conn,$hash,$block) {
             return "
             <table class='tabla'>
                 <tr>
-                    <th>registro</th>
+                    <th>titulo</th>
+                    <th>informacion</th>
                     <th>fecha</th>
                 </tr>
             </table>

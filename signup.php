@@ -16,7 +16,7 @@ if (
 
     echo tbpcontenedor (
         "<h2>Crea un Usuario con tu hash</h2>".tbpform(
-            "#",
+            "TBP-procesamiento/signup.php",
             "POST",
             "introduce tu nick name creado previamente",
             "registrar",

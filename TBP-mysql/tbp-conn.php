@@ -39,6 +39,7 @@ function eliminar ($id,$conn) {
 function existe ($nickname,$hash,$conn) {
 
     $sql = "SELECT nick_name,hash FROM person";
+    
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
@@ -176,13 +177,13 @@ function registrar_usuario ($conn,$user,$password,$hash) {
 }
 
 function gethash ($user,$password,$conn) {
-    $sql = "SELECT hash FROM users WHERE person_nick_name='$user' and password='$password'";
+    $sql = "SELECT person_hash FROM users WHERE person_nick_name='$user' and password='$password'";
     $result = $conn->query($sql);
     
     if ($result->num_rows > 0) {
         
         while($row = $result->fetch_assoc()) {
-            $hash = $row['hash'];
+            $hash = $row['person_hash'];
         }
 
         return $hash;
@@ -194,7 +195,7 @@ function setear ($user,$password,$conn) {
 
     $hash = gethash($user,$password,$conn);
 
-    $sql = "SELECT name,edad,fecha_nacimiento,nick_name,hash FROM person WHERE hash='$hash'";
+    $sql = "SELECT nombre,edad,fecha_nacimiento,nick_name,hash FROM person WHERE hash='$hash'";
     
     $result = $conn->query($sql);
     
